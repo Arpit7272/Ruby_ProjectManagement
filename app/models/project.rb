@@ -13,6 +13,18 @@ class Project < ApplicationRecord
       'not-started'
     end
   end
+
+  def badge_color
+    case status
+    when 'not-started'
+      'secondary'
+    when 'in-progress'
+      'info'
+    when 'complete'
+      'success'
+    end
+  end
+  
   def percent_complete
     return 0 if tasks.none?
     ((total_complete.to_f / total_tasks) * 100).round
